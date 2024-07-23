@@ -7,7 +7,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 
-iris = pd.read_csv('C:/Users/shiva/OneDrive/Desktop/internship encryptix/Iris/IRIS.csv')
+iris = pd.read_csv(r'C:\Users\DELL\OneDrive\Desktop\encriptyx projects\iris flower\iris data\IRIS.csv')
 X = iris.iloc[:, :-1]  
 y = iris.iloc[:, -1]  
 print("Iris Dataset Information:")
