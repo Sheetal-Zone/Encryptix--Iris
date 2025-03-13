@@ -1,0 +1,42 @@
+# Import necessary libraries
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+# Load the Iris dataset from CSV file
+iris = pd.read_csv(r'C:\Users\DELL\OneDrive\Desktop\encriptyx projects\iris flower\iris data\IRIS.csv')
+
+# Assume the last column is the target variable
+X = iris.iloc[:, :-1]  # features
+y = iris.iloc[:, -1]  # target variable
+
+# Print the dataset information
+print("Iris Dataset Information:")
+print("Features:", X.columns)
+print("Target Names:", y.unique())
+print("Dataset Shape:", X.shape)
+print("Target Shape:", y.shape)
+
+# Train/Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Feature Scaling
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+
+# Training the Logistic Regression model
+log_reg = LogisticRegression()
+log_reg.fit(X_train, y_train)
+
+# Predicting the Test set results
+y_pred = log_reg.predict(X_test)
+
+# Evaluating the model
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
